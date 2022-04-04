@@ -1,7 +1,11 @@
 package com.example.vibration_checker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -74,6 +78,13 @@ public class MainActivity extends AppCompatActivity{
 
         toggleButton_up.setText("Едем вверх");
         toggleButton3_true.setText("Правдивые");
+
+        int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        } else {
+
+        }
 
         button_go.setOnClickListener(new View.OnClickListener() {
             @Override
